@@ -1,0 +1,33 @@
+body{
+  background-color: black;
+}
+.custome-container{
+  max-width: 600px;
+  padding: 0px 10px;
+  margin: 20px auto;
+}
+.admin-form-input{
+  width: 100%;
+  padding: 15px 10px;
+  border: none;
+  margin: 10px 0px;
+}
+.admin-login-button{
+  text-align: center;
+  padding: 10px;
+  width: 50%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  background-color: yellow;
+  border: none;
+  border-radius: 5px;
+}
+
+h2{
+  color: yellow;
+  text-align: center;
+}
+p{
+  color: white;
+}

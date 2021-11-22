@@ -1,6 +1,6 @@
 'use strict';
-// const BASE_URL = window.location.origin + "/PSG";
-const BASE_URL = window.location.origin
+// const BASE_URL = window.location.origin + "/PSG"; //server
+const BASE_URL = window.location.origin //local
 
 let booths = [];
 let max_booth_num = 1;
@@ -108,7 +108,7 @@ function main() {
         bevelOffset: 1,
         bevelSegments: 8
       });
-
+      txt_geo.center();
       var txt_mat = new THREE.MeshPhongMaterial({ color: 0xFFFF00 });
       const textMesh = new THREE.Mesh(txt_geo, txt_mat);
       textMesh.name = name;
@@ -157,13 +157,14 @@ function main() {
         var obj = scene.getObjectByName("booth_" + booth.booth_num);
         const position = obj?.position;
         if (booth.hall == hall_number) {
-          addTextObject(booth?.ex_name, { x: position.x - 5, y: position.y + 4, z: position.z }, 1.5, booth?.ex_id);
+          addTextObject(booth?.ex_name, { x: position.x, y: position.y + 7, z: position.z }, 1.5, booth?.ex_id);
+          addTextObject(booth?.booth_no?.toString(), { x: position.x, y: position.y + 5, z: position.z }, 1.5, booth?.ex_id);
         }
       })
 
       var boothNum = scene.getObjectByName("HallNum");
       const boothNum_position = boothNum.position;
-      addTextObject(hall_number?.toString(), { x: boothNum_position.x - 1, y: boothNum_position.y - 5, z: boothNum_position.z }, 5, "Hall Number");
+      addTextObject(hall_number?.toString(), { x: boothNum_position.x + 1, y: boothNum_position.y - 2.5, z: boothNum_position.z }, 5, "Hall Number");
     });
   }
   function resizeRendererToDisplaySize(renderer) {

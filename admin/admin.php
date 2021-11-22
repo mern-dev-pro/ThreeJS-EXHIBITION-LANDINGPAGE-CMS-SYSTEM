@@ -1,8 +1,8 @@
 <?php 
 session_start();
 if(!isset($_SESSION['valid']) || !$_SESSION['valid']){
-  header("Location: index.php");
-  // header("Location: admin");
+  // header("Location: index.php"); //server
+  header("Location: /admin"); //local
   unset($_SESSION["valid"]);
   unset($_SESSION["username"]);
 }
@@ -10,32 +10,32 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_POST['submit']) && $_POST['submit'] == 'image_button') {  
     if(!empty($_FILES['file'])){
       $files = $_FILES['file'];
-      $path = realpath($_SERVER["DOCUMENT_ROOT"]) . DIRECTORY_SEPARATOR . "PSG/data/screen/";
-      // $path = "../data/screen/";
+      // $path = realpath($_SERVER["DOCUMENT_ROOT"]) . DIRECTORY_SEPARATOR . "PSG/data/screen/"; //server
+      $path = "../data/screen/"; //local
       $path = $path . $_POST['filename'];
       move_uploaded_file($files['tmp_name'], $path);
-      header("Location: admin.php");
-      // header("Location: /admin/admin.php");
+      // header("Location: admin.php"); //server
+      header("Location: /admin/admin.php"); //local
     }
   } else if(isset($_POST['submit']) && $_POST['submit'] == 'xlsx_button'){
     if(!empty($_FILES['file'])){
       $files = $_FILES['file'];
-      $path = realpath($_SERVER["DOCUMENT_ROOT"]) . DIRECTORY_SEPARATOR . "PSG/data/";
-      // $path = "../data/";
+      // $path = realpath($_SERVER["DOCUMENT_ROOT"]) . DIRECTORY_SEPARATOR . "PSG/data/"; //server
+      $path = "../data/"; //local
       $path = $path . $_POST['filename'];
       move_uploaded_file($files['tmp_name'], $path);
-      header("Location: admin.php");
-      // header("Location: /admin/admin.php");
+      // header("Location: admin.php"); //server
+      header("Location: /admin/admin.php"); //local
     }
   } else if(isset($_POST['submit']) && $_POST['submit'] == 'json_button'){
     if(!empty($_FILES['file'])){
       $files = $_FILES['file'];
-      $path = realpath($_SERVER["DOCUMENT_ROOT"]) . DIRECTORY_SEPARATOR . "PSG/data/";
-      // $path = "../data/";
+      // $path = realpath($_SERVER["DOCUMENT_ROOT"]) . DIRECTORY_SEPARATOR . "PSG/data/"; //server
+      $path = "../data/"; //local
       $path = $path . $_POST['filename'];
       move_uploaded_file($files['tmp_name'], $path);
-      header("Location: admin.php");
-      // header("Location: /admin/admin.php");
+      // header("Location: admin.php"); //server
+      header("Location: /admin/admin.php"); //local
     }
   }
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -147,7 +147,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
           <div class="row col-md-12">
             <div class="col-md-3 border py-3">
-              <p class="text-white">Upload left banner screen</p>
+              <p class="text-white">Upload banner screen 1</p>
               <form enctype="multipart/form-data" method="POST">
                 <input type="file" name="file" class="bg-white w-100 my-2" required />
                 <input type="hidden" name="filename" value="left_banner.jpg" class="bg-white w-100 my-2"/>
@@ -158,7 +158,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
             <div class="col-md-3 border py-3">
-              <p class="text-white">Upload right banner screen</p>
+              <p class="text-white">Upload banner screen 2</p>
               <form enctype="multipart/form-data" method="POST">
                 <input type="file" name="file" class="bg-white w-100 my-2" required />
                 <input type="hidden" name="filename" value="right_banner.jpg" class="bg-white w-100 my-2"/>
@@ -168,16 +168,38 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                   <img src="../data/screen/right_banner.jpg" class="w-100 h-auto"></img>
                 </div>
             </div>
+            <div class="col-md-3 border py-3">
+              <p class="text-white">Upload banner screen 3</p>
+              <form enctype="multipart/form-data" method="POST">
+                <input type="file" name="file" class="bg-white w-100 my-2" required />
+                <input type="hidden" name="filename" value="left_banner_1.jpg" class="bg-white w-100 my-2"/>
+                <button type="submit" name="submit"  value="image_button" class="btn btn-light w-100">UPLOAD IMAGE</button>
+              </form>
+              <div class="my-2" id="left_screen_preview">
+                  <img src="../data/screen/left_banner_1.jpg" class="w-100 h-auto"></img>
+                </div>
+            </div>
+            <div class="col-md-3 border py-3">
+              <p class="text-white">Upload banner screen 4</p>
+              <form enctype="multipart/form-data" method="POST">
+                <input type="file" name="file" class="bg-white w-100 my-2" required />
+                <input type="hidden" name="filename" value="right_banner_1.jpg" class="bg-white w-100 my-2"/>
+                <button type="submit" name="submit"  value="image_button" class="btn btn-light w-100">UPLOAD IMAGE</button>
+              </form>
+              <div class="my-2" id="left_screen_preview">
+                  <img src="../data/screen/right_banner_1.jpg" class="w-100 h-auto"></img>
+                </div>
+            </div>
           </div>
         </div>
       </div>
       <h3 class="text-white pt-5">EXHIBITION HALL</h3>
       <div>
-        <p>Upload an Excel file for Booth Info</p>
+        <p>Upload an Excel file for Booth Info <a target="_blank" id="download_xlsx" style="cursor:pointer">[Download XLSX File]</a></p>
         <form enctype="multipart/form-data" method="POST">
           <input type="file" name="file" class="bg-white w-100 my-2" required />
           <input type="hidden" name="filename" value="PSG_booths.xlsx" class="bg-white w-100 my-2"/>
-          <button type="submit" name="submit"  value="xlsx_button" class="btn btn-light w-100">UPLOAD IMAGE</button>
+          <button type="submit" name="submit"  value="xlsx_button" class="btn btn-light w-100">UPLOAD XLSX FILE</button>
         </form>
         <div class="py-2 mx-0">
           <label for="left_show_link" class="form-label text-white text-left">COMPANY LINK</label>

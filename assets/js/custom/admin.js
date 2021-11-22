@@ -1,5 +1,5 @@
-// const BASE_URL = window.location.origin + "/PSG";
-const BASE_URL = window.location.origin
+// const BASE_URL = window.location.origin + "/PSG"; //server
+const BASE_URL = window.location.origin //local
 $.getJSON(BASE_URL + "/data/info.json", function (json) {
   showJsonInfo(json);
 });
@@ -41,7 +41,7 @@ $("#save").click(function () {
   console.log(fd);
 
   $.ajax({
-    url: 'admin.php',
+    url: BASE_URL + '/admin/admin.php',
     type: 'post',
     data: fd,
     contentType: false,
@@ -66,3 +66,15 @@ showJsonInfo = (json) => {
   $("#info_counter_link").val(json.info_counter_link);
   $("#company_url").val(json.company_url)
 }
+
+function download(filename, filepath) {
+  var element = document.createElement('a');
+  element.setAttribute('href', filepath);
+  element.setAttribute('download', filename);
+  document.body.appendChild(element);
+  element.click();
+}
+
+$("#download_xlsx").click(function () {
+  download('booths.xlsx', BASE_URL + "/data/PSG_booths.xlsx")
+})

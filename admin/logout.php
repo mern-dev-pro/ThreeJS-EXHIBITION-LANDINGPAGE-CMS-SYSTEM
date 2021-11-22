@@ -1,6 +1,6 @@
 <?php
   session_start();
   session_destroy();
-  // header("Location: /admin/");
-  header("Location: index.php");
+  // header("Location: index.php"); //server
+  header("Location: /admin/"); //local
 ?>

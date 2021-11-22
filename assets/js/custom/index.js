@@ -1,6 +1,6 @@
 'use strict';
-// const BASE_URL = window.location.origin + "/PSG";
-const BASE_URL = window.location.origin
+// const BASE_URL = window.location.origin + "/PSG"; //server
+const BASE_URL = window.location.origin //local
 var info = null;
 
 function loadJSON() {
@@ -45,7 +45,7 @@ function main() {
   {
     const skyColor = 0xffffff;
     const groundColor = 0xffffff;
-    const intensity = 0.6;
+    const intensity = 0.5;
     const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
     scene.add(light);
   }
@@ -102,7 +102,7 @@ function main() {
     dracoLoader.setDecoderPath(BASE_URL + '/assets/js/libraries/draco/');
     const gltfLoader = new THREE.GLTFLoader(loadingManager);
     gltfLoader.setDRACOLoader(dracoLoader);
-    gltfLoader.load('./assets/models/test.glb', (gltf) => {
+    gltfLoader.load('./assets/models/lobby.glb', (gltf) => {
 
       gltf.scene.traverse(function (object) {
         object.frustumCulled = false;
@@ -188,6 +188,24 @@ function main() {
       center_led.traverse((object) => {
         if (object.isMesh) {
           object.material.map = texture_5;
+        }
+      })
+      var texture_5 = textureLoader.load(BASE_URL + "/data/screen/left_banner_1.jpg");
+      texture_5.encoding = THREE.sRGBEncoding;
+      texture_5.flipY = false;
+      var center_led = scene.getObjectByName("left_banner_002");
+      center_led.traverse((object) => {
+        if (object.isMesh) {
+          object.material.map = texture_5;
+        }
+      })
+      var texture_6 = textureLoader.load(BASE_URL + "/data/screen/right_banner_1.jpg");
+      texture_6.encoding = THREE.sRGBEncoding;
+      texture_6.flipY = false;
+      var center_led = scene.getObjectByName("right_banner_002");
+      center_led.traverse((object) => {
+        if (object.isMesh) {
+          object.material.map = texture_6;
         }
       })
     });

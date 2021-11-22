@@ -1,9 +1,15 @@
 <?php
+  require("login.php");
   $msg = '';
   ob_start();
   session_start();
+  if(isset($_SESSION['valid']) && $_SESSION['valid']){
+    // header("Location: admin.php");
+    header("Location: /admin/admin.php");
+    exit(); 
+  }
   if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
-    if ($_POST['username'] == 'admin' && $_POST['password'] == 'admin') {
+    if (array_key_exists($_POST['username'], $CODE['login']) && $CODE['login'][$_POST['username']] == $_POST['password']) {
       $_SESSION['valid'] = true;
       $_SESSION['timeout'] = time();
       $_SESSION['username'] = $_POST['username'];

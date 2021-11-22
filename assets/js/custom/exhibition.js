@@ -1,6 +1,6 @@
 'use strict';
-const BASE_URL = window.location.origin + "/PSG";
-// const BASE_URL = window.location.origin
+// const BASE_URL = window.location.origin + "/PSG";
+const BASE_URL = window.location.origin
 
 let booths = [];
 let max_booth_num = 1;
@@ -81,7 +81,7 @@ function main() {
   {
     const skyColor = 0xffffff;
     const groundColor = 0xffffff;
-    const intensity = 0.6;
+    const intensity = 0.7;
     const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
     scene.add(light);
   }
@@ -109,7 +109,7 @@ function main() {
         bevelSegments: 8
       });
 
-      var txt_mat = new THREE.MeshPhongMaterial({ color: 0xFFFF66 });
+      var txt_mat = new THREE.MeshPhongMaterial({ color: 0xFFFF00 });
       const textMesh = new THREE.Mesh(txt_geo, txt_mat);
       textMesh.name = name;
       textMesh.position.x = position.x;
@@ -155,7 +155,7 @@ function main() {
 
       booths.map((booth) => {
         var obj = scene.getObjectByName("booth_" + booth.booth_num);
-        const position = obj.position;
+        const position = obj?.position;
         if (booth.hall == hall_number) {
           addTextObject(booth?.ex_name, { x: position.x - 5, y: position.y + 4, z: position.z }, 1.5, booth?.ex_id);
         }
@@ -213,7 +213,6 @@ function main() {
   }
   window.addEventListener('click', e => raycast(e));
   window.addEventListener('touchend', e => raycast(e, true));
-  window.addEventListener('mousemove', e => raycast(e, false, true));
 
   requestAnimationFrame(render);
 }

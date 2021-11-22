@@ -102,7 +102,7 @@ function main() {
     dracoLoader.setDecoderPath(BASE_URL + '/assets/js/libraries/draco/');
     const gltfLoader = new THREE.GLTFLoader(loadingManager);
     gltfLoader.setDRACOLoader(dracoLoader);
-    gltfLoader.load('./assets/models/lobby.glb', (gltf) => {
+    gltfLoader.load('./assets/models/test.glb', (gltf) => {
 
       gltf.scene.traverse(function (object) {
         object.frustumCulled = false;
@@ -151,7 +151,6 @@ function main() {
       var center_led = scene.getObjectByName("center_led");
       center_led.traverse((object) => {
         if (object.isMesh) {
-          //object.material.emissive = new THREE.Color(0x00ffff);
           object.material.map = texture_1;
         }
       })
@@ -161,7 +160,6 @@ function main() {
       var center_led = scene.getObjectByName("left_led");
       center_led.traverse((object) => {
         if (object.isMesh) {
-          //object.material.emissive = new THREE.Color(0x00ffff);
           object.material.map = texture_2;
         }
       })
@@ -171,7 +169,6 @@ function main() {
       var center_led = scene.getObjectByName("right_led");
       center_led.traverse((object) => {
         if (object.isMesh) {
-          //object.material.emissive = new THREE.Color(0x00ffff);
           object.material.map = texture_3;
         }
       })

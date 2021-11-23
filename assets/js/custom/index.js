@@ -1,6 +1,6 @@
 'use strict';
-// const BASE_URL = window.location.origin + "/PSG"; //server
-const BASE_URL = window.location.origin //local
+const BASE_URL = window.location.origin + "/PSG"; //server
+// const BASE_URL = window.location.origin //local
 var info = null;
 
 function loadJSON() {

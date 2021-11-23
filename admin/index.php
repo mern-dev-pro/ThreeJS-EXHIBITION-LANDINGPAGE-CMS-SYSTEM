@@ -4,8 +4,8 @@
   ob_start();
   session_start();
   if(isset($_SESSION['valid']) && $_SESSION['valid']){
-    // header("Location: admin.php"); //server
-    header("Location: /admin/admin.php"); //local
+    header("Location: admin.php"); //server
+    // header("Location: /admin/admin.php"); //local
     exit(); 
   }
   if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
@@ -13,8 +13,8 @@
       $_SESSION['valid'] = true;
       $_SESSION['timeout'] = time();
       $_SESSION['username'] = $_POST['username'];
-      // header("Location: admin.php"); //server
-      header("Location: /admin/admin.php"); //local
+      header("Location: admin.php"); //server
+      // header("Location: /admin/admin.php"); //local
       exit(); 
     } else {
       $_SESSION['valid'] = false;

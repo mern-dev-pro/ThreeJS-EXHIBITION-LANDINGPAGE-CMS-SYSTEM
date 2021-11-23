@@ -1,6 +1,6 @@
 'use strict';
-// const BASE_URL = window.location.origin + "/PSG"; //server
-const BASE_URL = window.location.origin //local
+const BASE_URL = window.location.origin + "/PSG"; //server
+// const BASE_URL = window.location.origin //local
 
 let booths = [];
 let max_booth_num = 1;

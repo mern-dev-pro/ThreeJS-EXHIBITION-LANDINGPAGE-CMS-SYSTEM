@@ -1,8 +1,8 @@
 <?php 
 session_start();
 if(!isset($_SESSION['valid']) || !$_SESSION['valid']){
-  // header("Location: index.php"); //server
-  header("Location: /admin"); //local
+  header("Location: index.php"); //server
+  // header("Location: /admin"); //local
   unset($_SESSION["valid"]);
   unset($_SESSION["username"]);
 }
@@ -10,8 +10,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_POST['submit']) && $_POST['submit'] == 'image_button') {  
     if(!empty($_FILES['file'])){
       $files = $_FILES['file'];
-      // $path = realpath($_SERVER["DOCUMENT_ROOT"]) . DIRECTORY_SEPARATOR . "PSG/data/screen/"; //server
-      $path = "../data/screen/"; //local
+      $path = realpath($_SERVER["DOCUMENT_ROOT"]) . DIRECTORY_SEPARATOR . "PSG/data/screen/"; //server
+      // $path = "../data/screen/"; //local
       $path = $path . $_POST['filename'];
       move_uploaded_file($files['tmp_name'], $path);
       // header("Location: admin.php"); //server
@@ -20,22 +20,22 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   } else if(isset($_POST['submit']) && $_POST['submit'] == 'xlsx_button'){
     if(!empty($_FILES['file'])){
       $files = $_FILES['file'];
-      // $path = realpath($_SERVER["DOCUMENT_ROOT"]) . DIRECTORY_SEPARATOR . "PSG/data/"; //server
-      $path = "../data/"; //local
+      $path = realpath($_SERVER["DOCUMENT_ROOT"]) . DIRECTORY_SEPARATOR . "PSG/data/"; //server
+      // $path = "../data/"; //local
       $path = $path . $_POST['filename'];
       move_uploaded_file($files['tmp_name'], $path);
-      // header("Location: admin.php"); //server
-      header("Location: /admin/admin.php"); //local
+      header("Location: admin.php"); //server
+      // header("Location: /admin/admin.php"); //local
     }
   } else if(isset($_POST['submit']) && $_POST['submit'] == 'json_button'){
     if(!empty($_FILES['file'])){
       $files = $_FILES['file'];
-      // $path = realpath($_SERVER["DOCUMENT_ROOT"]) . DIRECTORY_SEPARATOR . "PSG/data/"; //server
-      $path = "../data/"; //local
+      $path = realpath($_SERVER["DOCUMENT_ROOT"]) . DIRECTORY_SEPARATOR . "PSG/data/"; //server
+      // $path = "../data/"; //local
       $path = $path . $_POST['filename'];
       move_uploaded_file($files['tmp_name'], $path);
-      // header("Location: admin.php"); //server
-      header("Location: /admin/admin.php"); //local
+      header("Location: admin.php"); //server
+      // header("Location: /admin/admin.php"); //local
     }
   }
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {

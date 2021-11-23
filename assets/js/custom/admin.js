@@ -1,5 +1,5 @@
-// const BASE_URL = window.location.origin + "/PSG"; //server
-const BASE_URL = window.location.origin //local
+const BASE_URL = window.location.origin + "/PSG"; //server
+// const BASE_URL = window.location.origin //local
 $.getJSON(BASE_URL + "/data/info.json", function (json) {
   showJsonInfo(json);
 });
